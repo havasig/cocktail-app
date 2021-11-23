@@ -10,10 +10,15 @@
 		E373BECB274D8CF400B7B147 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BECA274D8CF400B7B147 /* AppDelegate.swift */; };
 		E373BECD274D8CF400B7B147 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BECC274D8CF400B7B147 /* SceneDelegate.swift */; };
 		E373BED0274D8CF400B7B147 /* cocktail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E373BECE274D8CF400B7B147 /* cocktail.xcdatamodeld */; };
-		E373BED2274D8CF400B7B147 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BED1274D8CF400B7B147 /* ContentView.swift */; };
+		E373BED2274D8CF400B7B147 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BED1274D8CF400B7B147 /* TabBarView.swift */; };
 		E373BED4274D8CF900B7B147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E373BED3274D8CF900B7B147 /* Assets.xcassets */; };
 		E373BED7274D8CF900B7B147 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E373BED6274D8CF900B7B147 /* Preview Assets.xcassets */; };
 		E373BEDA274D8CF900B7B147 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E373BED8274D8CF900B7B147 /* LaunchScreen.storyboard */; };
+		E373BEE2274D93E800B7B147 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BEE1274D93E800B7B147 /* SearchView.swift */; };
+		E373BEE4274D997F00B7B147 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BEE3274D997F00B7B147 /* FavouriteView.swift */; };
+		E373BEE6274D999900B7B147 /* Top10View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BEE5274D999900B7B147 /* Top10View.swift */; };
+		E373BEE8274D99B700B7B147 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BEE7274D99B700B7B147 /* SettingsView.swift */; };
+		E373BEEA274D99E000B7B147 /* RandomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BEE9274D99E000B7B147 /* RandomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +26,16 @@
 		E373BECA274D8CF400B7B147 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E373BECC274D8CF400B7B147 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E373BECF274D8CF400B7B147 /* cocktail.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = cocktail.xcdatamodel; sourceTree = "<group>"; };
-		E373BED1274D8CF400B7B147 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E373BED1274D8CF400B7B147 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		E373BED3274D8CF900B7B147 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E373BED6274D8CF900B7B147 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E373BED9274D8CF900B7B147 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E373BEDB274D8CF900B7B147 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E373BEE1274D93E800B7B147 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		E373BEE3274D997F00B7B147 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
+		E373BEE5274D999900B7B147 /* Top10View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10View.swift; sourceTree = "<group>"; };
+		E373BEE7274D99B700B7B147 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E373BEE9274D99E000B7B147 /* RandomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +70,17 @@
 			children = (
 				E373BECA274D8CF400B7B147 /* AppDelegate.swift */,
 				E373BECC274D8CF400B7B147 /* SceneDelegate.swift */,
-				E373BED1274D8CF400B7B147 /* ContentView.swift */,
 				E373BED3274D8CF900B7B147 /* Assets.xcassets */,
 				E373BED8274D8CF900B7B147 /* LaunchScreen.storyboard */,
 				E373BEDB274D8CF900B7B147 /* Info.plist */,
 				E373BECE274D8CF400B7B147 /* cocktail.xcdatamodeld */,
 				E373BED5274D8CF900B7B147 /* Preview Content */,
+				E373BED1274D8CF400B7B147 /* TabBarView.swift */,
+				E373BEE1274D93E800B7B147 /* SearchView.swift */,
+				E373BEE3274D997F00B7B147 /* FavouriteView.swift */,
+				E373BEE5274D999900B7B147 /* Top10View.swift */,
+				E373BEE7274D99B700B7B147 /* SettingsView.swift */,
+				E373BEE9274D99E000B7B147 /* RandomView.swift */,
 			);
 			path = cocktail;
 			sourceTree = "<group>";
@@ -149,9 +164,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E373BEEA274D99E000B7B147 /* RandomView.swift in Sources */,
+				E373BEE2274D93E800B7B147 /* SearchView.swift in Sources */,
+				E373BEE8274D99B700B7B147 /* SettingsView.swift in Sources */,
 				E373BECB274D8CF400B7B147 /* AppDelegate.swift in Sources */,
 				E373BECD274D8CF400B7B147 /* SceneDelegate.swift in Sources */,
-				E373BED2274D8CF400B7B147 /* ContentView.swift in Sources */,
+				E373BED2274D8CF400B7B147 /* TabBarView.swift in Sources */,
+				E373BEE4274D997F00B7B147 /* FavouriteView.swift in Sources */,
+				E373BEE6274D999900B7B147 /* Top10View.swift in Sources */,
 				E373BED0274D8CF400B7B147 /* cocktail.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
