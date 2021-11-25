@@ -21,7 +21,7 @@ struct TabBarView: View {
                     Text("Favourite")
                     Image(systemName: "heart.fill")
             }
-            SearchView()
+            SearchView(text: .constant(""))
                 .tabItem {
                     Text("Search")
                     Image(systemName: "magnifyingglass")

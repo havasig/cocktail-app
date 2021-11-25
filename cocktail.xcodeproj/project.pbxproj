@@ -19,6 +19,9 @@
 		E373BEE6274D999900B7B147 /* Top10View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BEE5274D999900B7B147 /* Top10View.swift */; };
 		E373BEE8274D99B700B7B147 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BEE7274D99B700B7B147 /* SettingsView.swift */; };
 		E373BEEA274D99E000B7B147 /* RandomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BEE9274D99E000B7B147 /* RandomView.swift */; };
+		E3F1AF6F274FAAED00FF8981 /* GlassListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F1AF6E274FAAED00FF8981 /* GlassListView.swift */; };
+		E3F1AF71274FADF100FF8981 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F1AF70274FADF100FF8981 /* NetworkManager.swift */; };
+		E3F1AF73274FAE1D00FF8981 /* Glass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F1AF72274FAE1D00FF8981 /* Glass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		E373BEE5274D999900B7B147 /* Top10View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10View.swift; sourceTree = "<group>"; };
 		E373BEE7274D99B700B7B147 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E373BEE9274D99E000B7B147 /* RandomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomView.swift; sourceTree = "<group>"; };
+		E3F1AF6E274FAAED00FF8981 /* GlassListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassListView.swift; sourceTree = "<group>"; };
+		E3F1AF70274FADF100FF8981 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E3F1AF72274FAE1D00FF8981 /* Glass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,9 @@
 				E373BEE5274D999900B7B147 /* Top10View.swift */,
 				E373BEE7274D99B700B7B147 /* SettingsView.swift */,
 				E373BEE9274D99E000B7B147 /* RandomView.swift */,
+				E3F1AF6E274FAAED00FF8981 /* GlassListView.swift */,
+				E3F1AF70274FADF100FF8981 /* NetworkManager.swift */,
+				E3F1AF72274FAE1D00FF8981 /* Glass.swift */,
 			);
 			path = cocktail;
 			sourceTree = "<group>";
@@ -168,9 +177,12 @@
 				E373BEE2274D93E800B7B147 /* SearchView.swift in Sources */,
 				E373BEE8274D99B700B7B147 /* SettingsView.swift in Sources */,
 				E373BECB274D8CF400B7B147 /* AppDelegate.swift in Sources */,
+				E3F1AF71274FADF100FF8981 /* NetworkManager.swift in Sources */,
 				E373BECD274D8CF400B7B147 /* SceneDelegate.swift in Sources */,
 				E373BED2274D8CF400B7B147 /* TabBarView.swift in Sources */,
 				E373BEE4274D997F00B7B147 /* FavouriteView.swift in Sources */,
+				E3F1AF6F274FAAED00FF8981 /* GlassListView.swift in Sources */,
+				E3F1AF73274FAE1D00FF8981 /* Glass.swift in Sources */,
 				E373BEE6274D999900B7B147 /* Top10View.swift in Sources */,
 				E373BED0274D8CF400B7B147 /* cocktail.xcdatamodeld in Sources */,
 			);
