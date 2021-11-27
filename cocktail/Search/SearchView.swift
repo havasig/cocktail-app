@@ -24,6 +24,7 @@ struct SearchView: View {
                     Text("Categories")
                 }
             }
+            .navigationBarTitle("Search")
         }
     }
 }

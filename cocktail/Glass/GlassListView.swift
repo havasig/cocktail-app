@@ -11,15 +11,18 @@ import SwiftUI
 struct GlassListView: View {
     @ObservedObject var networkManager = NetworkManager()
     
-    
     var body: some View {
-        VStack {
-            List(networkManager.fetchedGlasses){glass in
-                Text(glass.name)
+            VStack {
+                List(networkManager.fetchedGlasses){glass in
+                    NavigationLink(destination: DrinkListView(glassId: glass.id, categoryId: 0)){
+                            Text(glass.name)
+                    }
+                }
             }
-        }.onAppear {
-            self.networkManager.fetchGlasses()
-        }
+            .navigationBarTitle("Glasses", displayMode: .inline)
+            .onAppear {
+                self.networkManager.fetchGlasses()
+            }
     }
 }
 
