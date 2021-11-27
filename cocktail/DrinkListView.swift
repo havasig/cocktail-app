@@ -9,14 +9,44 @@
 import SwiftUI
 
 struct DrinkListView: View {
-    let glassId: Int 
-    let categoryId: Int
+    let title: String
+    let glassId: Int?
+    let categoryId: Int?
+    @ObservedObject var networkManager = NetworkManager()
+        
+     var body: some View {
+             VStack {
+                 List(networkManager.fetchedDrinks){drink in
+                     NavigationLink(destination: DrinkDetailsView(drinkName: drink.name, drinkId: drink.id)){
+                            ThumbImageView(urlString: drink.thumb)
+                             Text(drink.name)
+                     }
+                 }
+             }
+             .navigationBarTitle(Text(title), displayMode: .inline)
+             .onAppear {
+                self.networkManager.fetchDrinksByGlass(glassId: self.glassId!)
+             }
+     }
+     
     
-    var body: some View {
-        VStack {
-            Text("Glass id tapped: \(glassId)")
-            
-            Text("Category id tapped: \(categoryId)")
-        }
-    }
+    
+    /*
+    
+     var body: some View {
+         VStack {
+            List(networkManager.fetchedDrinks){drink in
+                 NavigationLink(destination: DrinkDetailsView(drinkName: drink.name, drinkId: drink.id)) {
+                         ThumbImageView(urlString: drink.thumb)
+                         Text(drink.name)
+                 }
+             }
+         }
+         .navigationBarTitle(self.title, displayMode: .inline)
+         .onAppear {
+             self.networkManager.fetchGlasses()//self.networkManager.fetchDrinksByGlass(glassId: self.glassId!)
+         }
+     }
+     */
+    
 }
