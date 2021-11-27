@@ -20,7 +20,7 @@ struct SearchView: View {
                 NavigationLink(destination: GlassListView()) {
                     Text("Glasses")
                 }
-                NavigationLink(destination: RandomView()) {
+                NavigationLink(destination: CategoryListView()) {
                     Text("Categories")
                 }
             }
