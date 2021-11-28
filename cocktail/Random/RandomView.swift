@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RandomView: View {
     var body: some View {
-        Text("Random")
+        Text("random")
     }
 }
 

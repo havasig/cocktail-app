@@ -17,7 +17,7 @@ struct DrinkListView: View {
      var body: some View {
              VStack {
                  List(networkManager.fetchedDrinks){drink in
-                     NavigationLink(destination: DrinkDetailsView(drinkName: drink.name, drinkId: drink.id)){
+                    NavigationLink(destination: DrinkDetailsView(drink: drink)){
                             ThumbImageView(urlString: drink.thumb)
                              Text(drink.name)
                      }
@@ -27,26 +27,5 @@ struct DrinkListView: View {
              .onAppear {
                 self.networkManager.fetchDrinksByGlass(glassId: self.glassId!)
              }
-     }
-     
-    
-    
-    /*
-    
-     var body: some View {
-         VStack {
-            List(networkManager.fetchedDrinks){drink in
-                 NavigationLink(destination: DrinkDetailsView(drinkName: drink.name, drinkId: drink.id)) {
-                         ThumbImageView(urlString: drink.thumb)
-                         Text(drink.name)
-                 }
-             }
-         }
-         .navigationBarTitle(self.title, displayMode: .inline)
-         .onAppear {
-             self.networkManager.fetchGlasses()//self.networkManager.fetchDrinksByGlass(glassId: self.glassId!)
-         }
-     }
-     */
-    
+     }    
 }

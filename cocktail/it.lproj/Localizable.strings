@@ -1,0 +1,16 @@
+/* 
+  string.strings
+  cocktail
+
+  Created by Gabor Havasi on 2021. 11. 28..
+  Copyright © 2021. Gabor Havasi. All rights reserved.
+*/
+
+
+"settings" = "Impostanzioni";
+"favourite" = "Preferiti";
+"top10" = "Primi 10";
+"random" = "Casuale";
+"glasses" = "Bicchieri";
+"categories" = "Categorie";
+"search" = "Cerca";

@@ -30,6 +30,7 @@
 		E3F1AF6F274FAAED00FF8981 /* GlassListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F1AF6E274FAAED00FF8981 /* GlassListView.swift */; };
 		E3F1AF71274FADF100FF8981 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F1AF70274FADF100FF8981 /* NetworkManager.swift */; };
 		E3F1AF73274FAE1D00FF8981 /* Glass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F1AF72274FAE1D00FF8981 /* Glass.swift */; };
+		E3F2409C275416D80080E691 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3F2409E275416D80080E691 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,9 @@
 		E3F1AF6E274FAAED00FF8981 /* GlassListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassListView.swift; sourceTree = "<group>"; };
 		E3F1AF70274FADF100FF8981 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E3F1AF72274FAE1D00FF8981 /* Glass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glass.swift; sourceTree = "<group>"; };
+		E3F2409B275412BD0080E691 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E3F2409D275416D80080E691 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E3F240A2275417760080E691 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 				E3A0EA82275286FB004D6B4E /* ThumbImageView.swift */,
 				E3A0EA8427528831004D6B4E /* DrinkDetailsView.swift */,
 				E3BAABA42752AEF3007A25F5 /* DrinkImageView.swift */,
+				E3F2409E275416D80080E691 /* Localizable.strings */,
 			);
 			path = cocktail;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = E373BEBE274D8CF300B7B147;
 			productRefGroup = E373BEC8274D8CF400B7B147 /* Products */;
@@ -241,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E373BEDA274D8CF900B7B147 /* LaunchScreen.storyboard in Resources */,
+				E3F2409C275416D80080E691 /* Localizable.strings in Resources */,
 				E373BED7274D8CF900B7B147 /* Preview Assets.xcassets in Resources */,
 				E373BED4274D8CF900B7B147 /* Assets.xcassets in Resources */,
 			);
@@ -283,8 +290,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				E373BED9274D8CF900B7B147 /* Base */,
+				E3F2409B275412BD0080E691 /* it */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E3F2409E275416D80080E691 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3F2409D275416D80080E691 /* en */,
+				E3F240A2275417760080E691 /* it */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -294,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -354,6 +372,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

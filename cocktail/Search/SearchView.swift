@@ -18,13 +18,13 @@ struct SearchView: View {
             VStack {
                 Text("boii")
                 NavigationLink(destination: GlassListView()) {
-                    Text("Glasses")
+                    Text("glasses")
                 }
                 NavigationLink(destination: CategoryListView()) {
-                    Text("Categories")
+                    Text("categories")
                 }
             }
-            .navigationBarTitle("Search")
+            .navigationBarTitle("search")
         }
     }
 }

@@ -20,7 +20,7 @@ struct CategoryListView: View {
                 }
             }
         }
-        .navigationBarTitle("Categories", displayMode: .inline)
+        .navigationBarTitle("categories", displayMode: .inline)
         .onAppear {
             self.networkManager.fetchCategories()
         }

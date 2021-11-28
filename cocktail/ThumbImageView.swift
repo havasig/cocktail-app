@@ -19,7 +19,7 @@ struct ThumbImageView: View {
         Image(uiImage: image)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width:50, height:59)
+            .frame(width:50, height:50)
         .clipShape(Circle())
             .onReceive(imageLoader.$image) { image in
                 self.image = image

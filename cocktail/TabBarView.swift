@@ -9,33 +9,34 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @State private var selection = 2
     var body: some View {
-        TabView {
+        TabView(selection: $selection) {
             RandomView()
                 .tabItem {
-                    Text("Random")
+                    Text("random")
                     Image(systemName: "ant.fill")
-            }
+            }.tag(0)
             FavouriteView()
                 .tabItem {
-                    Text("Favourite")
+                    Text("favourite")
                     Image(systemName: "heart.fill")
-            }
+            }.tag(1)
             SearchView(text: .constant(""))
                 .tabItem {
-                    Text("Search")
+                    Text("search")
                     Image(systemName: "magnifyingglass")
-            }
+            }.tag(2)
             Top10View()
                 .tabItem {
-                    Text("Top10")
+                    Text("top10")
                     Image(systemName: "10.square")
-            }
+            }.tag(3)
             SettingsView()
                 .tabItem {
-                    Text("Settings")
+                    Text("settings")
                     Image(systemName: "flame.fill")
-            }
+            }.tag(4)
         }
         .font(.headline)
     }

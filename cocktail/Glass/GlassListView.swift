@@ -19,7 +19,7 @@ struct GlassListView: View {
                     }
                 }
             }
-            .navigationBarTitle("Glasses", displayMode: .inline)
+            .navigationBarTitle("glasses", displayMode: .inline)
             .onAppear {
                 self.networkManager.fetchGlasses()
             }

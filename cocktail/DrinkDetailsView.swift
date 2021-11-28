@@ -9,9 +9,35 @@
 import SwiftUI
 
 struct DrinkDetailsView: View {
-    var drinkName: String
-    var drinkId: Int
+    var drink: Drink
+    @ObservedObject var networkManager = NetworkManager()
+    
+    @ViewBuilder
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack(spacing: 20) {
+                DrinkImageView(urlString: drink.thumb)
+                .padding(20)
+                Text(drink.name)
+                    .font(.largeTitle)
+                
+            }
+            .onAppear {
+                self.networkManager.isDrinkFavourite(drinkId: self.drink.id)
+            }
+            .navigationBarTitle(Text(drink.name), displayMode: .inline)
+            .navigationBarItems(trailing:
+                Button(action: {
+                    self.networkManager.isDrinkFavouritePressed(drinkId: self.drink.id)
+                }) {
+                    if self.networkManager.fetchedDrinkIsFavourite {
+                        Image(systemName: "heart.fill")
+                    } else {
+                        Image(systemName: "heart")
+                    }
+                }
+            )
+        }
+        
     }
 }

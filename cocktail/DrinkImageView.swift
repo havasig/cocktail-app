@@ -19,8 +19,8 @@ struct DrinkImageView: View {
         Image(uiImage: image)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width:50, height:59)
-        .clipShape(Circle())
+            .frame(width:100, height:100)
+            .clipShape(Circle())
             .onReceive(imageLoader.$image) { image in
                 self.image = image
             }
