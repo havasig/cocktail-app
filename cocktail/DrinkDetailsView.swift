@@ -41,29 +41,41 @@ struct DrinkDetailsView: View {
                 Text(drink.name)
                     .font(.largeTitle)
                     .fixedSize(horizontal: false, vertical: true)
+                    .frame(alignment: .center)
                 
                 Group {
-                HStack {
-                    VStack(alignment: .trailing) {
-                        ForEach(drink.ingredients, id: \.self){ingredient in
-                            Text(ingredient)
+                    HStack {
+                        VStack(alignment: .trailing) {
+                            ForEach(drink.ingredients, id: \.self){ingredient in
+                                Text(ingredient)
+                            }
                         }
-                    }
-                    .padding(10)
-                    VStack(alignment: .leading) {
-                        ForEach(drink.measures, id: \.self){measure in
-                            Text(measure)
+                        .padding(.trailing, 10)
+                        VStack(alignment: .leading) {
+                            ForEach(drink.measures, id: \.self){measure in
+                                Text(measure)
+                            }
                         }
+                        .padding(.leading, 10)
                     }
-                    .padding(10)
-                }
-                
-                    Text("glass:" + drink.glass)
+                    .frame(maxWidth: .infinity)
+                    
+                    HStack {
+                        
+                        Text("glass:")
+                            .font(.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(drink.glass)
+                                .font(.title)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                     Text("instructions:")
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     Text(localizedInstructions)
                         .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-            }
+                }.padding(20)
             .onAppear {
                 self.networkManager.isDrinkFavourite(drinkId: self.drink.id)
                 self.setInstruction()
