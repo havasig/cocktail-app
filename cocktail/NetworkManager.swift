@@ -9,15 +9,13 @@
 import UIKit
 
 class NetworkManager: ObservableObject {
-    @Published var fetchedGlasses = [Glass]()
-    @Published var fetchedCategories = [Category]()
+    @Published var fetchedGlasses = [String]()
+    @Published var fetchedCategories = [String]()
     @Published var fetchedDrinks = [Drink]()
-    @Published var fetchedDrink: Drink!
     @Published var fetchedDrinkIsFavourite: Bool = false
     
     func fetchGlasses() {
-        let urlString =
-        "http://10.0.2.2:8080/api/all-glasses"
+        let urlString = "https://cocktail-app-db.herokuapp.com/glass"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -26,7 +24,7 @@ class NetworkManager: ObservableObject {
                     let decoder = JSONDecoder()
                     if let data = data{
                         do{
-                            let glasses = try decoder.decode(Array<Glass>.self, from: data)
+                            let glasses = try decoder.decode(Array<String>.self, from: data)
                             DispatchQueue.main.async {
                                 self.fetchedGlasses = glasses
                             }
@@ -41,8 +39,7 @@ class NetworkManager: ObservableObject {
     }
         
     func fetchCategories() {
-        let urlString =
-        "http://10.0.2.2:8080/api/all-categories"
+        let urlString = "https://cocktail-app-db.herokuapp.com/category"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -51,7 +48,7 @@ class NetworkManager: ObservableObject {
                     let decoder = JSONDecoder()
                     if let data = data{
                         do{
-                            let categories = try decoder.decode(Array<Category>.self, from: data)
+                            let categories = try decoder.decode(Array<String>.self, from: data)
                             DispatchQueue.main.async {
                                 self.fetchedCategories = categories
                             }
@@ -65,9 +62,8 @@ class NetworkManager: ObservableObject {
         }
     }
         
-    func fetchDrinksByGlass(glassId: Int) {
-        let urlString =
-        "http://10.0.2.2:8080/api/drink/glass/1" //\(glassId)"
+    func fetchDrinksByGlassName(glassName: String) {
+        let urlString = "https://cocktail-app-db.herokuapp.com/filter/glass/\(glassName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -90,9 +86,9 @@ class NetworkManager: ObservableObject {
         }
     }
         
-        func fetchDrinksByCategory(categoryId: Int) {
+        func fetchDrinksByCategoryName(categoryName: String) {
             let urlString =
-            "http://10.0.2.2:8080/api/drink/category/1" //\(categoryId)"
+            "https://cocktail-app-db.herokuapp.com/filter/category/\(categoryName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             if let url = URL(string: urlString){
                 let session = URLSession(configuration: .default)
                 let task = session.dataTask(with: url) { (data, response, error)
@@ -116,8 +112,7 @@ class NetworkManager: ObservableObject {
         }
     
         func fetchDrinkById(drinkId: Int) {
-            let urlString =
-            "http://10.0.2.2:8080/api/drink/1" //\(drinkId)"
+            let urlString = "https://cocktail-app-db.herokuapp.com/drink/\(drinkId)"
             if let url = URL(string: urlString){
                 let session = URLSession(configuration: .default)
                 let task = session.dataTask(with: url) { (data, response, error)
@@ -128,7 +123,7 @@ class NetworkManager: ObservableObject {
                             do{
                                 let drink = try decoder.decode(Drink.self, from: data)
                                 DispatchQueue.main.async {
-                                    self.fetchedDrink = drink
+                                    //self.fetchedDrink = drink
                                 }
                             } catch{
                                 print(error)

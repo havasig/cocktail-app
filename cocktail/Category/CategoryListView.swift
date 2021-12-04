@@ -14,9 +14,9 @@ struct CategoryListView: View {
     
     var body: some View {
         VStack {
-            List(networkManager.fetchedCategories){category in
-                NavigationLink(destination: DrinkListView(title: category.name, glassId: nil, categoryId: category.id)){
-                        Text(category.name)
+            List(networkManager.fetchedCategories, id: \.self){category in
+                NavigationLink(destination: DrinkListView(title: category, isGlass: false, isCategory: true)){
+                        Text(category)
                 }
             }
         }

@@ -9,12 +9,22 @@
 import Foundation
 
 struct Drink:Identifiable, Codable {
-    var id: Int
-    var name: String
-    var thumb: String
+    var id: Int = 0
+    var name: String = ""
+    var thumb: String = ""
+    var ingredients: [String] = []
+    var measures: [String] = []
+    var glass: String = ""
+    var instructions: String = ""
+    var instructionsIT: String? = ""
     enum CodingKeys: String, CodingKey {
-        case id = "idDrink"
-        case name = "strDrink"
-        case thumb = "strDrinkThumb"
+        case id = "dbId"
+        case name
+        case thumb = "thumbUrl"
+        case ingredients
+        case measures
+        case glass
+        case instructions
+        case instructionsIT
     }
 }

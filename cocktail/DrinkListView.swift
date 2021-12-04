@@ -10,8 +10,8 @@ import SwiftUI
 
 struct DrinkListView: View {
     let title: String
-    let glassId: Int?
-    let categoryId: Int?
+    let isGlass: Bool
+    let isCategory: Bool
     @ObservedObject var networkManager = NetworkManager()
         
      var body: some View {
@@ -25,7 +25,11 @@ struct DrinkListView: View {
              }
              .navigationBarTitle(Text(title), displayMode: .inline)
              .onAppear {
-                self.networkManager.fetchDrinksByGlass(glassId: self.glassId!)
+                if self.isGlass {
+                    self.networkManager.fetchDrinksByGlassName(glassName: self.title)
+                } else if self.isCategory {
+                    self.networkManager.fetchDrinksByCategoryName(categoryName: self.title)
+                }
              }
      }    
 }

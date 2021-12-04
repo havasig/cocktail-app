@@ -14,3 +14,5 @@
 "glasses" = "Glasses";
 "categories" = "Categories";
 "search" = "Search";
+"glass:" = "Glass: ";
+"instructions:" = "Instructions: ";

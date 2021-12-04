@@ -20,12 +20,12 @@ struct ThumbImageView: View {
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width:50, height:50)
-        .clipShape(Circle())
+            .clipShape(Circle())
             .onReceive(imageLoader.$image) { image in
                 self.image = image
-            }
-            .onAppear {
-                self.imageLoader.loadImage(for: self.urlString)
-            }
+        }
+        .onAppear {
+            self.imageLoader.loadImage(for: self.urlString)
+        }
     }
 }

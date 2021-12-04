@@ -23,9 +23,9 @@ struct DrinkImageView: View {
             .clipShape(Circle())
             .onReceive(imageLoader.$image) { image in
                 self.image = image
-            }
-            .onAppear {
-                self.imageLoader.loadImage(for: self.urlString)
-            }
+        }
+        .onAppear {
+            self.imageLoader.loadImage(for: self.urlString)
+        }
     }
 }
