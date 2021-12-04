@@ -12,6 +12,7 @@ class NetworkManager: ObservableObject {
     @Published var fetchedGlasses = [String]()
     @Published var fetchedCategories = [String]()
     @Published var fetchedDrinks = [Drink]()
+    @Published var fetchedDrink = Drink()
     @Published var fetchedDrinkIsFavourite: Bool = false
     
     func fetchGlasses() {
@@ -111,29 +112,52 @@ class NetworkManager: ObservableObject {
             }
         }
     
-        func fetchDrinkById(drinkId: Int) {
-            let urlString = "https://cocktail-app-db.herokuapp.com/drink/\(drinkId)"
-            if let url = URL(string: urlString){
-                let session = URLSession(configuration: .default)
-                let task = session.dataTask(with: url) { (data, response, error)
-                    in
-                    if error == nil{
-                        let decoder = JSONDecoder()
-                        if let data = data{
-                            do{
-                                let drink = try decoder.decode(Drink.self, from: data)
-                                DispatchQueue.main.async {
-                                    //self.fetchedDrink = drink
-                                }
-                            } catch{
-                                print(error)
+    func fetchDrinkById(drinkId: Int) {
+        let urlString = "https://cocktail-app-db.herokuapp.com/drink/\(drinkId)"
+        if let url = URL(string: urlString){
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error)
+                in
+                if error == nil{
+                    let decoder = JSONDecoder()
+                    if let data = data{
+                        do{
+                            let drink = try decoder.decode(Drink.self, from: data)
+                            DispatchQueue.main.async {
+                                //self.fetchedDrink = drink
                             }
+                        } catch{
+                            print(error)
                         }
                     }
                 }
-                task.resume()
             }
+            task.resume()
         }
+    }
+    func fetchRandomDrink() {
+        let urlString = "https://cocktail-app-db.herokuapp.com/drink/178358"
+        if let url = URL(string: urlString){
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error)
+                in
+                if error == nil{
+                    let decoder = JSONDecoder()
+                    if let data = data{
+                        do{
+                            let drink = try decoder.decode(Drink.self, from: data)
+                            DispatchQueue.main.async {
+                                self.fetchedDrink = drink
+                            }
+                        } catch{
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
     
     func isDrinkFavourite(drinkId: Int) {
         //fetch from db

@@ -13,23 +13,23 @@ struct DrinkListView: View {
     let isGlass: Bool
     let isCategory: Bool
     @ObservedObject var networkManager = NetworkManager()
-        
-     var body: some View {
-             VStack {
-                 List(networkManager.fetchedDrinks){drink in
-                    NavigationLink(destination: DrinkDetailsView(drink: drink)){
-                            ThumbImageView(urlString: drink.thumb)
-                             Text(drink.name)
-                     }
-                 }
-             }
-             .navigationBarTitle(Text(title), displayMode: .inline)
-             .onAppear {
-                if self.isGlass {
-                    self.networkManager.fetchDrinksByGlassName(glassName: self.title)
-                } else if self.isCategory {
-                    self.networkManager.fetchDrinksByCategoryName(categoryName: self.title)
+    
+    var body: some View {
+        VStack {
+            List(networkManager.fetchedDrinks){drink in
+                NavigationLink(destination: DrinkDetailsView(drink: drink)){
+                    ThumbImageView(urlString: drink.thumb)
+                    Text(drink.name)
                 }
-             }
-     }    
+            }
+        }
+        .navigationBarTitle(Text(title), displayMode: .inline)
+        .onAppear {
+            if self.isGlass {
+                self.networkManager.fetchDrinksByGlassName(glassName: self.title)
+            } else if self.isCategory {
+                self.networkManager.fetchDrinksByCategoryName(categoryName: self.title)
+            }
+        }
+    }
 }

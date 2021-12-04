@@ -7,7 +7,7 @@
 */
 
 
-"settings" = "Impostanzioni";
+"settings" = "Impostazioni";
 "favourite" = "Preferiti";
 "top10" = "Primi 10";
 "random" = "Casuale";
@@ -16,3 +16,4 @@
 "search" = "Cerca";
 "glass:" = "Bicchiere: ";
 "instructions:" = "Instruzione: ";
+"try_other" = "Prova un altro";

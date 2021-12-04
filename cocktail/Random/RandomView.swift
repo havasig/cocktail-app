@@ -9,13 +9,27 @@
 import SwiftUI
 
 struct RandomView: View {
+    @ObservedObject var networkManager = NetworkManager()
+    
     var body: some View {
-        Text("random")
-    }
-}
-
-struct RandomView_Previews: PreviewProvider {
-    static var previews: some View {
-        RandomView()
+        NavigationView {
+            VStack {
+                NavigationLink(destination: DrinkDetailsView(drink: self.networkManager.fetchedDrink)){
+                        Text(self.networkManager.fetchedDrink.name)
+                    .padding(30)
+                    }
+                
+                Button(action: {
+                    self.networkManager.fetchRandomDrink()
+                }) {
+                    Text("try_other")
+                }
+            }
+            .navigationBarTitle("random", displayMode: .inline)
+            .onAppear {
+                self.networkManager.fetchRandomDrink()
+            }
+            .navigationBarTitle("random")
+        }        
     }
 }
