@@ -7,14 +7,17 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct DrinkDetailsView: View {
     var drink: Drink
+    @State var favourite: Bool = false
     @ObservedObject var networkManager = NetworkManager()
     let preferredLanguage = Bundle.preferredLocalizations(from: ["", "IT"]).first!
     @State var localizedInstructions = ""
     @ObservedObject var imageLoader = ImageLoader()
     @State var image: UIImage = UIImage()
+    
     
     func setInstruction() {
         switch(preferredLanguage) {
@@ -77,16 +80,17 @@ struct DrinkDetailsView: View {
                 }
                 }.padding(20)
             .onAppear {
-                self.networkManager.isDrinkFavourite(drinkId: self.drink.id)
+                self.favourite = self.networkManager.isDrinkFavourite(drinkName: self.drink.name)
                 self.setInstruction()
                 self.imageLoader.loadImage(for: self.drink.thumb)
             }
             .navigationBarTitle(Text(drink.name), displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
+                    self.favourite = !self.favourite
                     self.networkManager.isDrinkFavouritePressed(drink: self.drink)
                 }) {
-                    if self.networkManager.fetchedDrinkIsFavourite {
+                    if self.favourite {
                         Image(systemName: "heart.fill")
                     } else {
                         Image(systemName: "heart")

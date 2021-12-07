@@ -44,7 +44,7 @@ class NetworkManager: ObservableObject {
             task.resume()
         }
     }
-        
+    
     func fetchCategories() {
         let urlString = "https://cocktail-app-db.herokuapp.com/category"
         if let url = URL(string: urlString){
@@ -68,7 +68,7 @@ class NetworkManager: ObservableObject {
             task.resume()
         }
     }
-        
+    
     func fetchDrinksByGlassName(glassName: String) {
         let urlString = "https://cocktail-app-db.herokuapp.com/filter/glass/\(glassName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         if let url = URL(string: urlString){
@@ -92,31 +92,31 @@ class NetworkManager: ObservableObject {
             task.resume()
         }
     }
-        
-        func fetchDrinksByCategoryName(categoryName: String) {
-            let urlString =
+    
+    func fetchDrinksByCategoryName(categoryName: String) {
+        let urlString =
             "https://cocktail-app-db.herokuapp.com/filter/category/\(categoryName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            if let url = URL(string: urlString){
-                let session = URLSession(configuration: .default)
-                let task = session.dataTask(with: url) { (data, response, error)
-                    in
-                    if error == nil{
-                        let decoder = JSONDecoder()
-                        if let data = data{
-                            do{
-                                let drinks = try decoder.decode(Array<Drink>.self, from: data)
-                                DispatchQueue.main.async {
-                                    self.fetchedDrinks = drinks
-                                }
-                            } catch{
-                                print(error)
+        if let url = URL(string: urlString){
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error)
+                in
+                if error == nil{
+                    let decoder = JSONDecoder()
+                    if let data = data{
+                        do{
+                            let drinks = try decoder.decode(Array<Drink>.self, from: data)
+                            DispatchQueue.main.async {
+                                self.fetchedDrinks = drinks
                             }
+                        } catch{
+                            print(error)
                         }
                     }
                 }
-                task.resume()
             }
+            task.resume()
         }
+    }
     
     func fetchDrinkById(drinkId: Int) {
         let urlString = "https://cocktail-app-db.herokuapp.com/drink/\(drinkId)"
@@ -191,32 +191,52 @@ class NetworkManager: ObservableObject {
         }
     }
     
-    func isDrinkFavourite(drinkId: Int) {
-        //fetch from db
+    func isDrinkFavourite(drinkName: String) -> Bool {
+        let fetchRequest: NSFetchRequest<DrinkEntity>
+        fetchRequest = DrinkEntity.fetchRequest()
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(
+            format: "name = %@", drinkName)
+        
+        do {
+            let object = try context.fetch(fetchRequest).first
+            
+            if object != nil {
+                return true
+            }
+        }
+        catch {
+            return false
+        }
+        return false
     }
     
     func isDrinkFavouritePressed(drink: Drink) {
-        //save in db
-        self.fetchedDrinkIsFavourite = !self.fetchedDrinkIsFavourite
+        if self.isDrinkFavourite(drinkName: drink.name) {
+            //remove from db
+            let fetchRequest: NSFetchRequest<DrinkEntity>
+            fetchRequest = DrinkEntity.fetchRequest()
+            fetchRequest.fetchLimit = 1
+            fetchRequest.predicate = NSPredicate(format: "name = %@", drink.name)
+
+            do {
+                let object = try context.fetch(fetchRequest).first
+                context.delete(object!)
+            }
+            catch {}
+        } else {
+            //save in db
+            let dbDrink2 = DrinkEntity(context: context)
+            dbDrink2.id = Int32(drink.id)
+            dbDrink2.name = drink.name
+            dbDrink2.thumb = drink.thumb
+            dbDrink2.glass = drink.glass
+            dbDrink2.instructions = drink.instructions
+            dbDrink2.instructionsIT = drink.instructionsIT
+        }
         
-        let dbDrink2 = DrinkEntity(context: context)
-        dbDrink2.id = Int32(drink.id)
-        dbDrink2.name = drink.name
-        dbDrink2.thumb = drink.thumb
-        dbDrink2.glass = drink.glass
-        dbDrink2.instructions = drink.instructions
-        dbDrink2.instructionsIT = drink.instructionsIT
         
-        //let dbDrink = NSEntityDescription.insertNewObject(forEntityName: "DrinkEntity", into: context)
-        //dbDrink.setValue(drink.id, forKey: "id")
-        //dbDrink.setValue(drink.name, forKey: "name")
-        //dbDrink.setValue(drink.thumb, forKey: "thumb")
-        //dbDrink.setValue(drink.glass, forKey: "glass")
-        //dbDrink.setValue(drink.instructions, forKey: "instructions")
-        //dbDrink.setValue(drink.instructionsIT, forKey: "instructionsIT")
-        //dbDrink.setValue(drink.ingredients, forKey: "ingredients")
-        //dbDrink.setValue(drink.measures, forKey: "measures")
-                
+        
         if context.hasChanges {
             do {
                 try context.save()
@@ -228,7 +248,7 @@ class NetworkManager: ObservableObject {
     }
     
     func getFavourites() {
-
+        
         
     }
 }

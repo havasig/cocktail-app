@@ -23,9 +23,9 @@ struct FavouriteView: View {
         NavigationView {
             VStack {
                 List(drinks, id: \.self){drinkEntity in
-                    NavigationLink(destination: Text("ss")){//DrinkDetailsView(drink: self.DrinkEntityToDrink(drinkEntity: drinkEntity))
+                    NavigationLink(destination: DrinkDetailsView(drink: self.DrinkEntityToDrink(drinkEntity: drinkEntity))){
                             //ThumbImageView(urlString: drinkEntity.thumb)
-                        Text("drinkEntity.name")
+                        Text(drinkEntity.name!)
                     }
                 }
             }
