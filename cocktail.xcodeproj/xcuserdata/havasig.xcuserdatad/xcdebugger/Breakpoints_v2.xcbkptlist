@@ -14,9 +14,9 @@
             filePath = "cocktail/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "isDrinkFavouritePressed(drink:)"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "isDrinkFavouritePressed(drink:image:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

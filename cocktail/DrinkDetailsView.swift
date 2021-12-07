@@ -17,6 +17,7 @@ struct DrinkDetailsView: View {
     @State var localizedInstructions = ""
     @ObservedObject var imageLoader = ImageLoader()
     @State var image: UIImage = UIImage()
+    var thumb: UIImage? = nil
     
     
     func setInstruction() {
@@ -30,16 +31,27 @@ struct DrinkDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width:100, height:100)
-                    .clipShape(Circle())
-                    .padding(20)
-                    .onReceive(imageLoader.$image) { image in
-                        self.image = image
+                Group {
+                    if thumb != nil {
+                        Image(uiImage: thumb!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width:100, height:100)
+                            .clipShape(Circle())
+                            .padding(20)
+                    } else {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width:100, height:100)
+                            .clipShape(Circle())
+                            .padding(20)
+                            .onReceive(imageLoader.$image) { image in
+                                self.image = image
+                        }
+                    }
                 }
+                
                 
                 Text(drink.name)
                     .font(.largeTitle)
@@ -82,13 +94,15 @@ struct DrinkDetailsView: View {
             .onAppear {
                 self.favourite = self.networkManager.isDrinkFavourite(drinkName: self.drink.name)
                 self.setInstruction()
-                self.imageLoader.loadImage(for: self.drink.thumb)
+                if self.thumb == nil {
+                    self.imageLoader.loadImage(for: self.drink.thumb)
+                }
             }
             .navigationBarTitle(Text(drink.name), displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
                     self.favourite = !self.favourite
-                    self.networkManager.isDrinkFavouritePressed(drink: self.drink)
+                    self.networkManager.isDrinkFavouritePressed(drink: self.drink, image: self.image)
                 }) {
                     if self.favourite {
                         Image(systemName: "heart.fill")

@@ -16,13 +16,14 @@ class NetworkManager: ObservableObject {
     @Published var fetchedDrinks = [Drink]()
     @Published var fetchedDrink = Drink()
     @Published var fetchedDrinkIsFavourite: Bool = false
+    let baseUrl = "https://cocktail-app-db.herokuapp.com"
     
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     func fetchGlasses() {
-        let urlString = "https://cocktail-app-db.herokuapp.com/glass"
+        let urlString = "\(baseUrl)/glass"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -46,7 +47,7 @@ class NetworkManager: ObservableObject {
     }
     
     func fetchCategories() {
-        let urlString = "https://cocktail-app-db.herokuapp.com/category"
+        let urlString = "\(baseUrl)/category"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -70,7 +71,7 @@ class NetworkManager: ObservableObject {
     }
     
     func fetchDrinksByGlassName(glassName: String) {
-        let urlString = "https://cocktail-app-db.herokuapp.com/filter/glass/\(glassName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlString = "\(baseUrl)/filter/glass/\(glassName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -95,7 +96,7 @@ class NetworkManager: ObservableObject {
     
     func fetchDrinksByCategoryName(categoryName: String) {
         let urlString =
-            "https://cocktail-app-db.herokuapp.com/filter/category/\(categoryName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            "\(baseUrl)/filter/category/\(categoryName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -119,7 +120,7 @@ class NetworkManager: ObservableObject {
     }
     
     func fetchDrinkById(drinkId: Int) {
-        let urlString = "https://cocktail-app-db.herokuapp.com/drink/\(drinkId)"
+        let urlString = "\(baseUrl)/drink/\(drinkId)"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -144,7 +145,7 @@ class NetworkManager: ObservableObject {
     
     
     func fetchRandomDrink() {
-        let urlString = "https://cocktail-app-db.herokuapp.com/random"
+        let urlString = "\(baseUrl)/random"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -168,7 +169,7 @@ class NetworkManager: ObservableObject {
     }
     
     func fetchTop10Drink() {
-        let urlString = "https://cocktail-app-db.herokuapp.com/top10"
+        let urlString = "\(baseUrl)/top10"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -211,7 +212,7 @@ class NetworkManager: ObservableObject {
         return false
     }
     
-    func isDrinkFavouritePressed(drink: Drink) {
+    func isDrinkFavouritePressed(drink: Drink, image: UIImage) {
         if self.isDrinkFavourite(drinkName: drink.name) {
             //remove from db
             let fetchRequest: NSFetchRequest<DrinkEntity>
@@ -229,13 +230,11 @@ class NetworkManager: ObservableObject {
             let dbDrink2 = DrinkEntity(context: context)
             dbDrink2.id = Int32(drink.id)
             dbDrink2.name = drink.name
-            dbDrink2.thumb = drink.thumb
             dbDrink2.glass = drink.glass
             dbDrink2.instructions = drink.instructions
             dbDrink2.instructionsIT = drink.instructionsIT
+            dbDrink2.thumb = image.jpegData(compressionQuality: 1)
         }
-        
-        
         
         if context.hasChanges {
             do {
@@ -245,10 +244,5 @@ class NetworkManager: ObservableObject {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-    }
-    
-    func getFavourites() {
-        
-        
     }
 }

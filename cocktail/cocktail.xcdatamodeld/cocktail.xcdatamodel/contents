@@ -6,7 +6,7 @@
         <attribute name="instructions" optional="YES" attributeType="String"/>
         <attribute name="instructionsIT" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="thumb" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="thumb" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
     </entity>
     <elements>
         <element name="DrinkEntity" positionX="-63" positionY="-18" width="128" height="133"/>

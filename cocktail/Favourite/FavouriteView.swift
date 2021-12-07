@@ -13,19 +13,27 @@ struct FavouriteView: View {
     @ObservedObject var networkManager = NetworkManager()
     
     @FetchRequest(
-    entity: DrinkEntity.entity(),
-    sortDescriptors: [
-    NSSortDescriptor(keyPath: \DrinkEntity.name, ascending: true)]
+        entity: DrinkEntity.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \DrinkEntity.name, ascending: true)]
     ) var drinks: FetchedResults<DrinkEntity>
-        
+    
     
     var body: some View {
         NavigationView {
             VStack {
                 List(drinks, id: \.self){drinkEntity in
-                    NavigationLink(destination: DrinkDetailsView(drink: self.DrinkEntityToDrink(drinkEntity: drinkEntity))){
-                            //ThumbImageView(urlString: drinkEntity.thumb)
-                        Text(drinkEntity.name!)
+                    NavigationLink(destination: //Text("fuck")
+                        DrinkDetailsView(drink: self.DrinkEntityToDrink(drinkEntity: drinkEntity),thumb: UIImage(data: drinkEntity.thumb!)   )
+                    ){
+                        Group {
+                            Image(uiImage: UIImage(data: drinkEntity.thumb!)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width:50, height:50)
+                            .clipShape(Circle())
+                            Text(drinkEntity.name!)
+                        }
                     }
                 }
             }
@@ -35,13 +43,10 @@ struct FavouriteView: View {
     
     func DrinkEntityToDrink(drinkEntity: DrinkEntity) -> Drink {
         var newDrink = Drink()
-            newDrink.id = Int(drinkEntity.id)
+        newDrink.id = Int(drinkEntity.id)
         
         if let name = drinkEntity.name {
             newDrink.name = name
-        }
-        if let thumb = drinkEntity.thumb {
-            newDrink.thumb = thumb
         }
         if let glass = drinkEntity.glass {
             newDrink.glass = glass
