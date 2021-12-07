@@ -17,6 +17,14 @@ struct Drink:Identifiable, Codable {
     var glass: String = ""
     var instructions: String = ""
     var instructionsIT: String? = ""
+    
+    init() {
+        
+    }
+    
+    init(id: Int, name: String, thumb: String, ingredients: [String],measures: [String], glass: String, instructions: String, instrctionsID: String?) {
+        self.id = id
+    }
     enum CodingKeys: String, CodingKey {
         case id = "dbId"
         case name
@@ -27,4 +35,6 @@ struct Drink:Identifiable, Codable {
         case instructions
         case instructionsIT
     }
+    
+    
 }

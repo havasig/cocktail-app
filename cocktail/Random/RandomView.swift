@@ -25,7 +25,6 @@ struct RandomView: View {
                     Text("try_other")
                 }
             }
-            .navigationBarTitle("random", displayMode: .inline)
             .onAppear {
                 self.networkManager.fetchRandomDrink()
             }

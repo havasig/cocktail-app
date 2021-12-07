@@ -84,7 +84,7 @@ struct DrinkDetailsView: View {
             .navigationBarTitle(Text(drink.name), displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
-                    //self.networkManager.isDrinkFavouritePressed(drinkId: self.networkManager.fetchedDrink.id)
+                    self.networkManager.isDrinkFavouritePressed(drink: self.drink)
                 }) {
                     if self.networkManager.fetchedDrinkIsFavourite {
                         Image(systemName: "heart.fill")
