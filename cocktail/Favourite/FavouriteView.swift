@@ -57,6 +57,12 @@ struct FavouriteView: View {
         if let instructionsIT = drinkEntity.instructionsIT {
             newDrink.instructionsIT = instructionsIT
         }
+        if let ingredients = drinkEntity.ingredients {
+            newDrink.ingredients = ingredients
+        }
+        if let measures = drinkEntity.measures {
+            newDrink.measures = measures
+        }
         
         return newDrink
     }

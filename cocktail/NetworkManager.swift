@@ -233,6 +233,8 @@ class NetworkManager: ObservableObject {
             dbDrink2.glass = drink.glass
             dbDrink2.instructions = drink.instructions
             dbDrink2.instructionsIT = drink.instructionsIT
+            dbDrink2.ingredients = drink.ingredients
+            dbDrink2.measures = drink.measures
             dbDrink2.thumb = image.jpegData(compressionQuality: 1)
         }
         
