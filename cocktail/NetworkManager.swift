@@ -118,34 +118,9 @@ class NetworkManager: ObservableObject {
             task.resume()
         }
     }
-    
-    func fetchDrinkById(drinkId: Int) {
-        let urlString = "\(baseUrl)/drink/\(drinkId)"
-        if let url = URL(string: urlString){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { (data, response, error)
-                in
-                if error == nil{
-                    let decoder = JSONDecoder()
-                    if let data = data{
-                        do{
-                            let drink = try decoder.decode(Drink.self, from: data)
-                            DispatchQueue.main.async {
-                                //self.fetchedDrink = drink
-                            }
-                        } catch{
-                            print(error)
-                        }
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    
-    
+        
     func fetchRandomDrink() {
-        let urlString = "\(baseUrl)/random"
+        let urlString = "\(baseUrl)/drink/random"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -169,7 +144,7 @@ class NetworkManager: ObservableObject {
     }
     
     func fetchTop10Drink() {
-        let urlString = "\(baseUrl)/top10"
+        let urlString = "\(baseUrl)/drink/top10"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)

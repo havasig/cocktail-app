@@ -16,7 +16,6 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("boii")
                 NavigationLink(destination: GlassListView()) {
                     Text("glasses")
                 }
