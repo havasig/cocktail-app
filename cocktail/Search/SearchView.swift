@@ -9,27 +9,35 @@
 import SwiftUI
 
 struct SearchView: View {
+    @ObservedObject var networkManager = NetworkManager()
     @Binding var text: String
     
     @State var isEditing = false
+    @State var input: String = ""
     
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: GlassListView()) {
-                    Text("glasses")
-                }
-                NavigationLink(destination: CategoryListView()) {
-                    Text("categories")
-                }
+                    NavigationLink(destination: GlassListView()) {
+                        Text("glasses")
+                    }
+                    NavigationLink(destination: CategoryListView()) {
+                        Text("categories")
+                    }
+                    NavigationLink(destination: CategoryListView()) {
+                        Text("names")
+                    }
+                    NavigationLink(destination: IngredientListView()) {
+                        Text("ingredients")
+                    }
             }
             .navigationBarTitle("search")
         }
     }
 }
+
 /*
- 
- HStack {
+ HStack(alignment: .top) {
  TextField("Search ...", text: $text)
  .padding(7)
  .padding(.horizontal, 25)
@@ -72,9 +80,3 @@ struct SearchView: View {
  }
  }
  */
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView(text: .constant(""))
-    }
-}

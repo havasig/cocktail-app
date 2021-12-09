@@ -12,6 +12,7 @@ struct DrinkListView: View {
     let title: String
     let isGlass: Bool
     let isCategory: Bool
+    let ingredients: [String]?
     @ObservedObject var networkManager = NetworkManager()
     
     var body: some View {
@@ -29,6 +30,8 @@ struct DrinkListView: View {
                 self.networkManager.fetchDrinksByGlassName(glassName: self.title)
             } else if self.isCategory {
                 self.networkManager.fetchDrinksByCategoryName(categoryName: self.title)
+            } else if self.ingredients != nil {
+                self.networkManager.fetchDrinksByIngredients(ingredients: self.ingredients!)
             }
         }
     }

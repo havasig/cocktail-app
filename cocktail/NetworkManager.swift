@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 class NetworkManager: ObservableObject {
     
     @Published var fetchedGlasses = [String]()
     @Published var fetchedCategories = [String]()
+    @Published var fetchedIngredients: [String] = ["Vodka", "Gin", "Salt"]
     @Published var fetchedDrinks = [Drink]()
     @Published var fetchedDrink = Drink()
     @Published var fetchedDrinkIsFavourite: Bool = false
@@ -21,6 +23,30 @@ class NetworkManager: ObservableObject {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    
+    func fetchIngredients() {
+        let urlString = "\(baseUrl)/ingredients"
+        if let url = URL(string: urlString){
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error)
+                in
+                if error == nil{
+                    let decoder = JSONDecoder()
+                    if let data = data{
+                        do{
+                            let ingredients = try decoder.decode(Array<String>.self, from: data)
+                            DispatchQueue.main.async {
+                                // self.fetchedIngrediens = ingredients
+                            }
+                        } catch{
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
     
     func fetchGlasses() {
         let urlString = "\(baseUrl)/glass"
@@ -118,7 +144,38 @@ class NetworkManager: ObservableObject {
             task.resume()
         }
     }
+    
+    func fetchDrinksByIngredients(ingredients: [String]) {
+        let json: [String: Any] = ["ingredients" : ingredients]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
+        let urlString = "\(baseUrl)/filter/ingredients"
+        let url = URL(string: urlString)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
+        request.setValue("application/json", forHTTPHeaderField: "Accept") // the response expected to be in JSON format
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if error == nil{
+                let decoder = JSONDecoder()
+                if let data = data{
+                    do{
+                        let drinks = try decoder.decode(Array<Drink>.self, from: data)
+                        DispatchQueue.main.async {
+                            self.fetchedDrinks = drinks
+                        }
+                    } catch{
+                        print(error)
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    
     func fetchRandomDrink() {
         let urlString = "\(baseUrl)/drink/random"
         if let url = URL(string: urlString){
@@ -194,7 +251,7 @@ class NetworkManager: ObservableObject {
             fetchRequest = DrinkEntity.fetchRequest()
             fetchRequest.fetchLimit = 1
             fetchRequest.predicate = NSPredicate(format: "name = %@", drink.name)
-
+            
             do {
                 let object = try context.fetch(fetchRequest).first
                 context.delete(object!)

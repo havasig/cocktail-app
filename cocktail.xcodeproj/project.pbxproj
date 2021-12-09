@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E350F5D62762523200A2F027 /* IngredientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E350F5D52762523200A2F027 /* IngredientListView.swift */; };
+		E350F5D927626BC000A2F027 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E350F5D827626BC000A2F027 /* Alamofire */; };
 		E373BECB274D8CF400B7B147 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BECA274D8CF400B7B147 /* AppDelegate.swift */; };
 		E373BECD274D8CF400B7B147 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BECC274D8CF400B7B147 /* SceneDelegate.swift */; };
 		E373BED0274D8CF400B7B147 /* cocktail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E373BECE274D8CF400B7B147 /* cocktail.xcdatamodeld */; };
@@ -32,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E350F5D52762523200A2F027 /* IngredientListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListView.swift; sourceTree = "<group>"; };
 		E373BEC7274D8CF400B7B147 /* cocktail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cocktail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E373BECA274D8CF400B7B147 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E373BECC274D8CF400B7B147 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E350F5D927626BC000A2F027 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +117,7 @@
 				E3A0EA8427528831004D6B4E /* DrinkDetailsView.swift */,
 				E3BAABA42752AEF3007A25F5 /* DrinkImageView.swift */,
 				E3F2409E275416D80080E691 /* Localizable.strings */,
+				E350F5D52762523200A2F027 /* IngredientListView.swift */,
 			);
 			path = cocktail;
 			sourceTree = "<group>";
@@ -197,6 +202,9 @@
 			dependencies = (
 			);
 			name = cocktail;
+			packageProductDependencies = (
+				E350F5D827626BC000A2F027 /* Alamofire */,
+			);
 			productName = cocktail;
 			productReference = E373BEC7274D8CF400B7B147 /* cocktail.app */;
 			productType = "com.apple.product-type.application";
@@ -226,6 +234,9 @@
 				it,
 			);
 			mainGroup = E373BEBE274D8CF300B7B147;
+			packageReferences = (
+				E350F5D727626BC000A2F027 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = E373BEC8274D8CF400B7B147 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -269,6 +280,7 @@
 				E3A0EA83275286FB004D6B4E /* ThumbImageView.swift in Sources */,
 				E373BED0274D8CF400B7B147 /* cocktail.xcdatamodeld in Sources */,
 				E3A0EA7027525AC3004D6B4E /* CategoryListView.swift in Sources */,
+				E350F5D62762523200A2F027 /* IngredientListView.swift in Sources */,
 				E3A0EA81275285D1004D6B4E /* ImageLoader.swift in Sources */,
 				E3A0EA7B27525F54004D6B4E /* DrinkListView.swift in Sources */,
 				E3A0EA7D2752755B004D6B4E /* Drink.swift in Sources */,
@@ -475,6 +487,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E350F5D727626BC000A2F027 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E350F5D827626BC000A2F027 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E350F5D727626BC000A2F027 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E373BECE274D8CF400B7B147 /* cocktail.xcdatamodeld */ = {
