@@ -12,6 +12,7 @@ struct IngredientListView: View {
     @ObservedObject var networkManager = NetworkManager()
     @State var selectedIngredients: [String] = []
     
+    @ViewBuilder
     var body: some View {
         VStack {
              List {
@@ -37,6 +38,15 @@ struct IngredientListView: View {
             self.networkManager.fetchIngredients()
         }
         .navigationBarTitle("ingredients", displayMode: .inline)
+        .navigationBarItems(trailing:
+            Button(action: {}, label: {
+                if self.selectedIngredients.count > 0 {
+                    NavigationLink(destination: DrinkListView(title: "ingredients", isGlass: false, isCategory: false, ingredients: self.selectedIngredients, name: nil)) {
+                        Text("search")
+                    }
+                } else {}
+            })
+        )
             /*
              .navigationBarItems(trailing:
                  Button(action: {}, label: {
