@@ -14,8 +14,8 @@
 "glasses" = "Glasses";
 "categories" = "Categories";
 "search" = "Search";
-"glass:" = "Glass: ";
-"instructions:" = "Instructions: ";
+"glass" = "Glass";
+"instructions" = "Instructions";
 "try_other" = "Try another";
 "names" = "Names";
 "ingredients" = "Ingredients";

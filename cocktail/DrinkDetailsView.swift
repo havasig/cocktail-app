@@ -31,7 +31,30 @@ struct DrinkDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Group {
+                HStack {
+                    //Text(drink.name)
+                    //    .font(.title)
+                    //.fixedSize(horizontal: false, vertical: true)
+                    //.frame(alignment: .center)
+                    
+                    VStack(alignment: .leading) {
+                        Text("ingredients")
+                            .font(.title)
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.bottom, 20)
+                        ForEach(self.drink.ingredients.indices, id: \.self) { id -> Text in
+                            var measure = ""
+                            if id < self.drink.measures.count {
+                                measure = self.drink.measures[id]
+                            }
+                            
+                            return Text("\(measure) \(self.drink.ingredients[id])")
+                            //.fixedSize(horizontal: false, vertical: false)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    
                     if thumb != nil {
                         Image(uiImage: thumb!)
                             .resizable()
@@ -52,43 +75,29 @@ struct DrinkDetailsView: View {
                     }
                 }
                 
-                
-                Text(drink.name)
-                    .font(.largeTitle)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(alignment: .center)
+                Divider()
                 
                 Group {
+                    Text("glass")
+                        .font(.title)
+                        .bold()
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(drink.glass)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    VStack(alignment: .leading) {
-                        ForEach(self.drink.ingredients.indices, id: \.self) { id -> Text in
-                                var measure = ""
-                            if id < self.drink.measures.count {
-                                measure = self.drink.measures[id]
-                                }
-                                
-                            return Text("\(measure) \(self.drink.ingredients[id])")
-                            }
-                    }
-                    .padding(30)
-                    .frame(maxWidth: .infinity)
+                    Divider()
                     
-                    HStack {
-                        
-                        Text("glass:")
-                            .font(.title)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            Text(drink.glass)
-                                .font(.title)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    Text("instructions:")
+                    Text("instructions")
+                        .font(.title)
+                        .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Text(localizedInstructions)
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                }.padding(20)
+            }
+            .padding(20)
             .onAppear {
                 self.favourite = self.networkManager.isDrinkFavourite(drinkName: self.drink.name)
                 self.setInstruction()
@@ -96,7 +105,7 @@ struct DrinkDetailsView: View {
                     self.imageLoader.loadImage(for: self.drink.thumb)
                 }
             }
-            .navigationBarTitle(Text(drink.name), displayMode: .inline)
+            .navigationBarTitle(Text(drink.name))
             .navigationBarItems(trailing:
                 Button(action: {
                     self.favourite = !self.favourite

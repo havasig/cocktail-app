@@ -54,10 +54,13 @@ struct SearchView: View {
                     self.searchText = ""
                 }
                 
-                
-                NavigationLink(destination: DrinkListView(title: "Find by name", isGlass: false, isCategory: false, ingredients: nil, name: self.searchText)) {
-                    Text("search")
+                if self.searchText != "" {
+                    NavigationLink(destination: DrinkListView(title: "Find by name", isGlass: false, isCategory: false, ingredients: nil, name: self.searchText)) {
+                        Text("search")
+                    }
+                    .padding(10)
                 }
+                
                 NavigationLink(destination: GlassListView()) {
                     Text("glasses")
                 }
@@ -67,9 +70,11 @@ struct SearchView: View {
                 NavigationLink(destination: IngredientListView()) {
                     Text("ingredients")
                 }
+                Spacer()
             }
             .navigationBarTitle("search")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

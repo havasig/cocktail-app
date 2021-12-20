@@ -14,8 +14,8 @@
 "glasses" = "Bicchieri";
 "categories" = "Categorie";
 "search" = "Cerca";
-"glass:" = "Bicchiere: ";
-"instructions:" = "Instruzione: ";
+"glass" = "Bicchiere";
+"instructions" = "Instruzione";
 "try_other" = "Prova un altro";
 "names" = "Nomi";
 "ingredients" = "Ingredienti";
