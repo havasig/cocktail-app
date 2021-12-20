@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		E350F5D62762523200A2F027 /* IngredientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E350F5D52762523200A2F027 /* IngredientListView.swift */; };
-		E350F5D927626BC000A2F027 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E350F5D827626BC000A2F027 /* Alamofire */; };
 		E373BECB274D8CF400B7B147 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BECA274D8CF400B7B147 /* AppDelegate.swift */; };
 		E373BECD274D8CF400B7B147 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373BECC274D8CF400B7B147 /* SceneDelegate.swift */; };
 		E373BED0274D8CF400B7B147 /* cocktail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E373BECE274D8CF400B7B147 /* cocktail.xcdatamodeld */; };
@@ -68,7 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E350F5D927626BC000A2F027 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +201,6 @@
 			);
 			name = cocktail;
 			packageProductDependencies = (
-				E350F5D827626BC000A2F027 /* Alamofire */,
 			);
 			productName = cocktail;
 			productReference = E373BEC7274D8CF400B7B147 /* cocktail.app */;
@@ -235,7 +232,6 @@
 			);
 			mainGroup = E373BEBE274D8CF300B7B147;
 			packageReferences = (
-				E350F5D727626BC000A2F027 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = E373BEC8274D8CF400B7B147 /* Products */;
 			projectDirPath = "";
@@ -433,6 +429,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"cocktail/Preview Content\"";
+				DEVELOPMENT_TEAM = 376DNFPR46;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = cocktail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -452,6 +449,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"cocktail/Preview Content\"";
+				DEVELOPMENT_TEAM = 376DNFPR46;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = cocktail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -487,25 +485,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E350F5D727626BC000A2F027 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.4.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E350F5D827626BC000A2F027 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E350F5D727626BC000A2F027 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E373BECE274D8CF400B7B147 /* cocktail.xcdatamodeld */ = {

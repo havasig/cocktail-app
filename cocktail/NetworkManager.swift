@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Alamofire
 
 class NetworkManager: ObservableObject {
     
@@ -120,6 +119,31 @@ class NetworkManager: ObservableObject {
         }
     }
     
+    
+    func fetchDrinksByName(name: String) {
+        let urlString = "\(baseUrl)/filter/drink/\(name)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        if let url = URL(string: urlString){
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error)
+                in
+                if error == nil{
+                    let decoder = JSONDecoder()
+                    if let data = data{
+                        do{
+                            let drinks = try decoder.decode(Array<Drink>.self, from: data)
+                            DispatchQueue.main.async {
+                                self.fetchedDrinks = drinks
+                            }
+                        } catch{
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
     func fetchDrinksByCategoryName(categoryName: String) {
         let urlString =
             "\(baseUrl)/filter/category/\(categoryName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -186,8 +210,11 @@ class NetworkManager: ObservableObject {
                     let decoder = JSONDecoder()
                     if let data = data{
                         do{
-                            let drink = try decoder.decode(Drink.self, from: data)
+                            var drink = try decoder.decode(Drink.self, from: data)
                             DispatchQueue.main.async {
+                                while drink.ingredients.count > drink.measures.count {
+                                    drink.measures.append("")
+                                }
                                 self.fetchedDrink = drink
                             }
                         } catch{

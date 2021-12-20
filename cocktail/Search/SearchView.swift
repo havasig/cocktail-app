@@ -10,29 +10,75 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var networkManager = NetworkManager()
-    @Binding var text: String
-    
-    @State var isEditing = false
-    @State var input: String = ""
+    @State var searchText: String = ""
+    @State var showCancelButton = false
     
     var body: some View {
         NavigationView {
             VStack {
-                    NavigationLink(destination: GlassListView()) {
-                        Text("glasses")
+                
+                VStack {
+                    // Search view
+                    HStack {
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            
+                            TextField("search-by-name...", text: $searchText, onEditingChanged: { isEditing in
+                                self.showCancelButton = true
+                            }).foregroundColor(.primary)
+                            
+                            Button(action: {
+                                self.searchText = ""
+                            }) {
+                                Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
+                            }
+                            
+                        }
+                        .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                        .foregroundColor(.secondary)
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(10.0)
+                        
+                        if showCancelButton  {
+                            Button("Cancel") {
+                                UIApplication.shared.endEditing(true) // this must be placed before the other commands here
+                                self.searchText = ""
+                                self.showCancelButton = false
+                            }
+                            .foregroundColor(Color(.systemBlue))
+                        }
                     }
-                    NavigationLink(destination: CategoryListView()) {
-                        Text("categories")
-                    }
-                    NavigationLink(destination: CategoryListView()) {
-                        Text("names")
-                    }
-                    NavigationLink(destination: IngredientListView()) {
-                        Text("ingredients")
-                    }
+                    .padding(.horizontal)
+                }
+                .onAppear {
+                    self.searchText = ""
+                }
+                
+                
+                NavigationLink(destination: DrinkListView(title: "Find by name", isGlass: false, isCategory: false, ingredients: nil, name: self.searchText)) {
+                    Text("search")
+                }
+                NavigationLink(destination: GlassListView()) {
+                    Text("glasses")
+                }
+                NavigationLink(destination: CategoryListView()) {
+                    Text("categories")
+                }
+                NavigationLink(destination: IngredientListView()) {
+                    Text("ingredients")
+                }
             }
             .navigationBarTitle("search")
         }
+    }
+}
+
+extension UIApplication {
+    func endEditing(_ force: Bool) {
+        self.windows
+            .filter{$0.isKeyWindow}
+            .first?
+            .endEditing(force)
     }
 }
 

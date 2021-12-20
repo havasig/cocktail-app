@@ -59,20 +59,18 @@ struct DrinkDetailsView: View {
                     .frame(alignment: .center)
                 
                 Group {
-                    HStack {
-                        VStack(alignment: .trailing) {
-                            ForEach(drink.ingredients, id: \.self){ingredient in
-                                Text(ingredient)
+                    
+                    VStack(alignment: .leading) {
+                        ForEach(self.drink.ingredients.indices, id: \.self) { id -> Text in
+                                var measure = ""
+                            if id < self.drink.measures.count {
+                                measure = self.drink.measures[id]
+                                }
+                                
+                            return Text("\(measure) \(self.drink.ingredients[id])")
                             }
-                        }
-                        .padding(.trailing, 10)
-                        VStack(alignment: .leading) {
-                            ForEach(drink.measures, id: \.self){measure in
-                                Text(measure)
-                            }
-                        }
-                        .padding(.leading, 10)
                     }
+                    .padding(30)
                     .frame(maxWidth: .infinity)
                     
                     HStack {
