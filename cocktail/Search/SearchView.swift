@@ -39,13 +39,10 @@ struct SearchView: View {
                         .background(Color(.secondarySystemBackground))
                         .cornerRadius(10.0)
                         
-                        if showCancelButton  {
-                            Button("Cancel") {
-                                UIApplication.shared.endEditing(true) // this must be placed before the other commands here
-                                self.searchText = ""
-                                self.showCancelButton = false
+                        if showCancelButton && searchText != ""  {
+                            NavigationLink(destination: DrinkListView(title: "Find by name", isGlass: false, isCategory: false, name: String(self.searchText.lowercased().unicodeScalars.filter {CharacterSet.alphanumerics.contains($0)}))) {
+                                Text("search")
                             }
-                            .foregroundColor(Color(.systemBlue))
                         }
                     }
                     .padding(.horizontal)
@@ -54,23 +51,29 @@ struct SearchView: View {
                     self.searchText = ""
                 }
                 
-                if self.searchText != "" {
-                    NavigationLink(destination: DrinkListView(title: "Find by name", isGlass: false, isCategory: false, ingredients: nil, name: self.searchText)) {
-                        Text("search")
-                    }
-                    .padding(10)
-                }
-                
                 NavigationLink(destination: GlassListView()) {
                     Text("glasses")
-                }
+                            .font(.title)
+                            .foregroundColor(.black)
+                    }
+                    .padding(20)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                
+                Divider()
+                
                 NavigationLink(destination: CategoryListView()) {
                     Text("categories")
-                }
-                NavigationLink(destination: IngredientListView()) {
-                    Text("ingredients")
-                }
-                Spacer()
+                            .font(.title)
+                            .foregroundColor(.black)
+                    }
+                    .padding(20)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                
+                Divider()                
+                
+                Image("cocktail-glass")
+                .resizable()
+                .scaledToFit()
             }
             .navigationBarTitle("search")
         }
@@ -86,48 +89,3 @@ extension UIApplication {
             .endEditing(force)
     }
 }
-
-/*
- HStack(alignment: .top) {
- TextField("Search ...", text: $text)
- .padding(7)
- .padding(.horizontal, 25)
- .background(Color(.systemGray6))
- .cornerRadius(8)
- .overlay(
- HStack {
- Image(systemName: "magnifyingglass")
- .foregroundColor(.gray)
- .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
- .padding(.leading, 8)
- 
- if isEditing {
- Button(action: {
- self.text = ""
- }) {
- Image(systemName: "multiply.circle.fill")
- .foregroundColor(.gray)
- .padding(.trailing, 8)
- }
- }
- }
- )
- .padding(.horizontal, 10)
- .onTapGesture {
- self.isEditing = true
- }
- 
- if isEditing {
- Button(action: {
- self.isEditing = false
- self.text = ""
- 
- }) {
- Text("Cancel")
- }
- .padding(.trailing, 10)
- .transition(.move(edge: .trailing))
- .animation(.default)
- }
- }
- */

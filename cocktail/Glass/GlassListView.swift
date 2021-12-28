@@ -14,7 +14,7 @@ struct GlassListView: View {
     var body: some View {
             VStack {
                 List(networkManager.fetchedGlasses, id: \.self){glass in
-                    NavigationLink(destination: DrinkListView(title: glass, isGlass: true, isCategory: false, ingredients: nil, name: nil)){
+                    NavigationLink(destination: DrinkListView(title: glass, isGlass: true, isCategory: false, name: nil)){
                             Text(glass)
                     }
                 }

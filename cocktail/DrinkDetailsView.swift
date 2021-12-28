@@ -50,7 +50,7 @@ struct DrinkDetailsView: View {
                             }
                             
                             return Text("\(measure) \(self.drink.ingredients[id])")
-                            //.fixedSize(horizontal: false, vertical: false)
+                            //.fixedSize(horizontal: false, vertical: true)
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .topLeading)

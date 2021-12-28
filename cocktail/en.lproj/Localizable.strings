@@ -21,3 +21,13 @@
 "ingredients" = "Ingredients";
 "search-by-name..." = "Search by name...";
 "find-by-name" = "Find by name";
+"find-by-ingredients" = "Find by ingredients";
+"cancel" = "Cancel";
+"ingredient..." = "Search ingredient...";
+"zero ingredient missing" = "Zero ingredient missing";
+"one ingredient missing" = "One ingredients missing";
+"two ingredient missing" = "Two ingredients missing";
+"three ingredient missing" = "Three ingredients missing";
+"more ingredient missing" = "More ingredients missing";
+"details" = "Details";
+

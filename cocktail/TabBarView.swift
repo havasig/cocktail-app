@@ -15,7 +15,7 @@ struct TabBarView: View {
             RandomView()
                 .tabItem {
                     Text("random")
-                    Image(systemName: "ant.fill")
+                    Image(systemName: "cube")
             }.tag(0)
             FavouriteView()
                 .tabItem {
@@ -32,10 +32,10 @@ struct TabBarView: View {
                     Text("top10")
                     Image(systemName: "10.square")
             }.tag(3)
-            SettingsView()
+            IngredientListView()
                 .tabItem {
-                    Text("settings")
-                    Image(systemName: "flame.fill")
+                    Text("ingredients")
+                    Image(systemName: "plus.magnifyingglass")
             }.tag(4)
         }
         .font(.headline)

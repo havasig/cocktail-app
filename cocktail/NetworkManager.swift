@@ -13,7 +13,8 @@ class NetworkManager: ObservableObject {
     
     @Published var fetchedGlasses = [String]()
     @Published var fetchedCategories = [String]()
-    @Published var fetchedIngredients: [String] = ["Vodka", "Gin", "Salt"]
+    @Published var fetchedIngredients = [String]()
+    @Published var fetchedDrinksByIngredients = DrinksByIngredientsDto()
     @Published var fetchedDrinks = [Drink]()
     @Published var fetchedDrink = Drink()
     @Published var fetchedDrinkIsFavourite: Bool = false
@@ -24,7 +25,7 @@ class NetworkManager: ObservableObject {
     
     
     func fetchIngredients() {
-        let urlString = "\(baseUrl)/ingredients"
+        let urlString = "\(baseUrl)/ingredient"
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -35,7 +36,7 @@ class NetworkManager: ObservableObject {
                         do{
                             let ingredients = try decoder.decode(Array<String>.self, from: data)
                             DispatchQueue.main.async {
-                                // self.fetchedIngrediens = ingredients
+                                self.fetchedIngredients = ingredients
                             }
                         } catch{
                             print(error)
@@ -121,7 +122,7 @@ class NetworkManager: ObservableObject {
     
     
     func fetchDrinksByName(name: String) {
-        let urlString = "\(baseUrl)/filter/drink/\(name)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlString = "\(baseUrl)/filter/name/\(name)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error)
@@ -186,9 +187,9 @@ class NetworkManager: ObservableObject {
                 let decoder = JSONDecoder()
                 if let data = data{
                     do{
-                        let drinks = try decoder.decode(Array<Drink>.self, from: data)
+                        let drinks = try decoder.decode(DrinksByIngredientsDto.self, from: data)
                         DispatchQueue.main.async {
-                            self.fetchedDrinks = drinks
+                            self.fetchedDrinksByIngredients = drinks
                         }
                     } catch{
                         print(error)

@@ -21,3 +21,12 @@
 "ingredients" = "Ingredienti";
 "search-by-name..." = "Ricerca per nome...";
 "find-by-name" = "Trova per nome";
+"find-by-ingredients" = "Trova per ingredienti";
+"cancel" = "Annulla";
+"ingredient..." = "Ricerca ingrediente...";
+"zero ingredient missing" = "Nessun ingrediente mancante";
+"one ingredient missing" = "Manca un ingrediente";
+"two ingredient missing" = "Mancano due ingredienti";
+"three ingredient missing" = "Mancano tre ingredienti";
+"more ingredient missing" = "Più ingrediente mancante";
+"details" = "Particolari";

@@ -10,40 +10,58 @@ import SwiftUI
 
 struct RandomView: View {
     @ObservedObject var networkManager = NetworkManager()
-    @ObservedObject var imageLoader = ImageLoader()
-    @State var image: UIImage = UIImage()
-    var thumb: UIImage? = nil
     
     @ViewBuilder
     var body: some View {
         NavigationView {
-            VStack {                
-                NavigationLink(destination: DrinkDetailsView(drink: self.networkManager.fetchedDrink)){
-                        Text(self.networkManager.fetchedDrink.name)
-                    }
-
+            VStack {
                 VStack(alignment: .leading) {
+                    Text("ingredients")
+                        .font(.title)
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, 20)
                     ForEach(self.networkManager.fetchedDrink.ingredients.indices, id: \.self) { id -> Text in
-                            var measure = ""
+                        var measure = ""
                         if id < self.networkManager.fetchedDrink.measures.count {
-                                measure = self.networkManager.fetchedDrink.measures[id]
-                            }
-                            return Text("\(measure) \(self.networkManager.fetchedDrink.ingredients[id])")
+                            measure = self.networkManager.fetchedDrink.measures[id]
                         }
+                        
+                        return Text("\(measure) \(self.networkManager.fetchedDrink.ingredients[id])")
+                    }
                 }
-                .padding(30)
-                .frame(maxWidth: .infinity)
+                .padding(.bottom, 20)
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                
+                NavigationLink(destination: DrinkDetailsView(drink: self.networkManager.fetchedDrink)){
+                        Text("details")
+                }
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                
+                Spacer()
                 
                 Button(action: {
                     self.networkManager.fetchRandomDrink()
                 }) {
                     Text("try_other")
                 }
+                .buttonStyle(GrowingButton())
             }
+            .padding(20)
             .onAppear {
                 self.networkManager.fetchRandomDrink()
             }
-            .navigationBarTitle("random")
+            .navigationBarTitle(Text(self.networkManager.fetchedDrink.name))
         }        
+    }
+}
+
+struct GrowingButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(8)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .clipShape(Capsule())
     }
 }
